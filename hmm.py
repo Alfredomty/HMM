@@ -43,9 +43,54 @@ class HMM:
 
         return tuple(state_probs)
 
+class HMMProgram:
+    def __init__(self, input_file):
+        self.input_file = input_file
+        self.parsed_data = [] # Storing the input file to read it
+    
+    def process_file(self):
 
-if __name__ == "__main__":
+        with open(self.input_file, 'r') as file:
+            lines = file.readlines()
+
+        for line in lines:
+            data = line.strip().split(',')
+            a, b, c, d, f = map(float, data[:5])
+            evidence = data[5:]
+
+            # Storing parsed data + original line for output formatting
+            self.parsed_data.append((a, b, c, d, f, evidence, line.strip()))
+
+    def run_HMM(self):
+        if not self.parsed_data:
+            self.process_file()  # Process the file if empty
+
+        results = []
+        for a, b, c, d, f, evidence, original_line in self.parsed_data:
+            # Create an HMM instance compute probabilities
+            hmm = HMM(a, b, c, d, f, evidence)
+            p_true, p_false = hmm.compute_prob()
+
+            # Format result
+            result = f"{original_line}--><{p_true:.4f},{p_false:.4f}>"
+            results.append(result)
+
+        return results
+
+def main():
     if len(sys.argv) != 2:
         print("Usage: python hmm.py <input_file>")
         sys.exit(1)
     input_file = sys.argv[1]
+
+    program = HMMProgram(input_file)
+
+    # Run HMM 
+    results = program.run_HMM()
+
+    # Output the results
+    for result in results:
+        print(result)
+
+if __name__ == "__main__":
+    main()
