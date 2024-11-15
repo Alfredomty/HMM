@@ -67,7 +67,7 @@ class HMMProgram:
 
         results = []
         for a, b, c, d, f, evidence, original_line in self.parsed_data:
-            # Create an HMM instance compute probabilities
+            # Create an HMM instance, compute probabilities
             hmm = HMM(a, b, c, d, f, evidence)
             p_true, p_false = hmm.compute_prob()
 
@@ -78,6 +78,7 @@ class HMMProgram:
         return results
 
 def main():
+    
     if len(sys.argv) != 2:
         print("Usage: python hmm.py <input_file>")
         sys.exit(1)
