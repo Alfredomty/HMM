@@ -1,5 +1,8 @@
+# Angel Grano-Cruz
+# CECS 451 HMM Project
 import sys
 import numpy as np
+
 class HMM:
     def __init__(self, a, b, c, d, f, evidence):
         """Initializes the Hidden Markov model with the a-f variables and the boolean evidence
