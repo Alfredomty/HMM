@@ -84,8 +84,6 @@ class HMMProgram:
     def run_HMM(self):
         """Runs the HMM algorithm by calling the HMM class and its compute_prob function.
 
-        Returns:
-            results(string): The formatted results to be printed out
         """
         if not self.parsed_data:
             self.process_file()  # Process the file if empty
@@ -100,7 +98,9 @@ class HMMProgram:
             result = f"{original_line}--><{p_true:.4f},{p_false:.4f}>"
             results.append(result)
 
-        return results
+        # Output the results
+        for result in results:
+            print(result)
 
 def main():
 
@@ -112,11 +112,8 @@ def main():
     program = HMMProgram(input_file)
 
     # Run HMM 
-    results = program.run_HMM()
+    program.run_HMM()
 
-    # Output the results
-    for result in results:
-        print(result)
 
 if __name__ == "__main__":
     main()
