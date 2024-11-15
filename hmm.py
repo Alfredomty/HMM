@@ -107,11 +107,12 @@ def main():
     if len(sys.argv) != 2:
         print("Usage: python hmm.py <input_file>")
         sys.exit(1)
+
+    # Adding the system argument as an input file
     input_file = sys.argv[1]
 
+    # Initializing the program
     program = HMMProgram(input_file)
-
-    # Run HMM 
     program.run_HMM()
 
 
