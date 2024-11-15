@@ -14,6 +14,9 @@ class HMM:
         self.initial_state = np.array([a, 1 - a])  
         self.evidence = evidence
 
+    def compute_prob(self):
+        pass
+
 if __name__ == "__main__":
     if len(sys.argv) != 2:
         print("Usage: python hmm.py <input_file>")
